@@ -13,7 +13,7 @@ yarn install -D || die "Installing dependencies via yarn failed"
 
 rm -rf public/packs public/assets
 env -i "PATH=$PATH" npm run build || die "Building the frontend failed"
-cp public/assets/sw.js "${TARGET}/sw.js" || die "installing sw.js (service-worker) failed"
+cp public/packs/sw.js "${TARGET}/sw.js" || die "installing sw.js (service-worker) failed"
 rm -rf "${TARGET}/packs" || die "Removing old assets in priv/static/packs failed"
 cp -r public/packs "${TARGET}/packs" || die "Copying new assets in priv/static/packs failed"
 rm -rf "${TARGET}/emoji/*.svg" || die "Removing the old emoji assets failed"
