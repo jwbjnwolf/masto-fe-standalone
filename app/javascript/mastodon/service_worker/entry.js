@@ -68,19 +68,8 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
   const url = new URL(event.request.url);
 
-    const asyncResponse = fetch(event.request);
-    const asyncCache = openWebCache();
-
-    event.respondWith(asyncResponse.then(response => {
-      if (response.ok || response.type === 'opaqueredirect') {
-        return Promise.all([
-          asyncCache.then(cache => cache.delete('/web')),
-          indexedDB.deleteDatabase('mastodon'),
-        ]).then(() => response);
-      }
-
-      return response;
-    }));
+  if (url.pathname.startsWith('/web')) {
+    return;
   }
 });
 
