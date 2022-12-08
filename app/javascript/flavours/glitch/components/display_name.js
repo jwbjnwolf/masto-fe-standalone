@@ -74,7 +74,7 @@ export default class DisplayName extends React.PureComponent {
       )).reduce((prev, cur) => [prev, ', ', cur]);
 
       if (others.size - 2 > 0) {
-       displayName.push(` +${others.size - 2}`);
+        displayName.push(` +${others.size - 2}`);
       }
 
       suffix = (

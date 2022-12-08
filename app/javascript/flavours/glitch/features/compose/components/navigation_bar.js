@@ -42,5 +42,4 @@ export default class NavigationBar extends ImmutablePureComponent {
       </div>
     );
   }
-
 }

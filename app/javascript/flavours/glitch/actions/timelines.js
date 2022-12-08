@@ -27,6 +27,7 @@ export const loadPending = timeline => ({
 });
 
 export function updateTimeline(timeline, status, accept) {
+  console.log("UPDATE", timeline, status);
   return (dispatch, getState) => {
     if (typeof accept === 'function' && !accept(status)) {
       return;
@@ -55,7 +56,7 @@ export function updateTimeline(timeline, status, accept) {
       timeline,
       status,
       usePendingItems: preferPendingItems,
-      filtered
+      filtered,
     });
 
     if (timeline === 'home') {

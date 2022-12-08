@@ -405,7 +405,7 @@ class UI extends React.Component {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
-    this.favicon = new Favico({ animation:"none" });
+    this.favicon = new Favico({ animation:'none' });
 
     // On first launch, redirect to the follow recommendations page
     if (signedIn && this.props.firstLaunch) {
@@ -659,7 +659,7 @@ class UI extends React.Component {
                 <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
                   @{moved.get('acct')}
                 </PermaLink>
-              )}}
+              ) }}
             />
           </div>)}
 

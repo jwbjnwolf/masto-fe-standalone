@@ -55,8 +55,9 @@ export const ImmutableHashtag = ({ hashtag }) => (
     name={hashtag.get('name')}
     href={hashtag.get('url')}
     to={`/tags/${hashtag.get('name')}`}
-    people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
-    history={hashtag.get('history').reverse().map((day) => day.get('uses')).toArray()}
+    people={0}
+    uses={0}
+    history={[]}
   />
 );
 

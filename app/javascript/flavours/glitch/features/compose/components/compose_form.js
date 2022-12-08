@@ -22,9 +22,9 @@ import { length } from 'stringz';
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   missingDescriptionMessage: {  id: 'confirmations.missing_media_description.message',
-                                defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.' },
+    defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.' },
   missingDescriptionConfirm: {  id: 'confirmations.missing_media_description.confirm',
-                                defaultMessage: 'Send anyway' },
+    defaultMessage: 'Send anyway' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
 });
 
@@ -88,7 +88,7 @@ class ComposeForm extends ImmutablePureComponent {
     return [
       this.props.spoiler? this.props.spoilerText: '',
       countableText(this.props.text),
-      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : ''
+      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : '',
     ].join('');
   }
 
@@ -217,60 +217,60 @@ class ComposeForm extends ImmutablePureComponent {
   //        the first; this provides a convenient shortcut to drop
   //        everyone else from the conversation.
    _updateFocusAndSelection = (prevProps) => {
-    const {
-      textarea,
-      spoilerText,
-    } = this;
-    const {
-      focusDate,
-      caretPosition,
-      isSubmitting,
-      preselectDate,
-      text,
-      preselectOnReply,
-      singleColumn,
-    } = this.props;
-    let selectionEnd, selectionStart;
+     const {
+       textarea,
+       spoilerText,
+     } = this;
+     const {
+       focusDate,
+       caretPosition,
+       isSubmitting,
+       preselectDate,
+       text,
+       preselectOnReply,
+       singleColumn,
+     } = this.props;
+     let selectionEnd, selectionStart;
 
-    //  Caret/selection handling.
-    if (focusDate !== prevProps.focusDate) {
-      switch (true) {
-      case preselectDate !== prevProps.preselectDate && this.props.isInReply && preselectOnReply:
-        selectionStart = text.search(/\s/) + 1;
-        selectionEnd = text.length;
-        break;
-      case !isNaN(caretPosition) && caretPosition !== null:
-        selectionStart = selectionEnd = caretPosition;
-        break;
-      default:
-        selectionStart = selectionEnd = text.length;
-      }
-      if (textarea) {
-        // Because of the wicg-inert polyfill, the activeElement may not be
-        // immediately selectable, we have to wait for observers to run, as
-        // described in https://github.com/WICG/inert#performance-and-gotchas
-        Promise.resolve().then(() => {
-          textarea.setSelectionRange(selectionStart, selectionEnd);
-          textarea.focus();
-          if (!singleColumn) textarea.scrollIntoView();
-        }).catch(console.error);
-      }
+     //  Caret/selection handling.
+     if (focusDate !== prevProps.focusDate) {
+       switch (true) {
+       case preselectDate !== prevProps.preselectDate && this.props.isInReply && preselectOnReply:
+         selectionStart = text.search(/\s/) + 1;
+         selectionEnd = text.length;
+         break;
+       case !isNaN(caretPosition) && caretPosition !== null:
+         selectionStart = selectionEnd = caretPosition;
+         break;
+       default:
+         selectionStart = selectionEnd = text.length;
+       }
+       if (textarea) {
+         // Because of the wicg-inert polyfill, the activeElement may not be
+         // immediately selectable, we have to wait for observers to run, as
+         // described in https://github.com/WICG/inert#performance-and-gotchas
+         Promise.resolve().then(() => {
+           textarea.setSelectionRange(selectionStart, selectionEnd);
+           textarea.focus();
+           if (!singleColumn) textarea.scrollIntoView();
+         }).catch(console.error);
+       }
 
-    //  Refocuses the textarea after submitting.
-    } else if (textarea && prevProps.isSubmitting && !isSubmitting) {
-      textarea.focus();
-    } else if (this.props.spoiler !== prevProps.spoiler) {
-      if (this.props.spoiler) {
-        if (spoilerText) {
-          spoilerText.focus();
-        }
-      } else {
-        if (textarea) {
-          textarea.focus();
-        }
-      }
-    }
-  }
+       //  Refocuses the textarea after submitting.
+     } else if (textarea && prevProps.isSubmitting && !isSubmitting) {
+       textarea.focus();
+     } else if (this.props.spoiler !== prevProps.spoiler) {
+       if (this.props.spoiler) {
+         if (spoilerText) {
+           spoilerText.focus();
+         }
+       } else {
+         if (textarea) {
+           textarea.focus();
+         }
+       }
+     }
+   }
 
 
   render () {
@@ -302,13 +302,12 @@ class ComposeForm extends ImmutablePureComponent {
       isEditing,
     } = this.props;
 
-    const countText = this.getFulltextForCharacterCounting();
+     const countText = this.getFulltextForCharacterCounting();
 
     return (
       <div className='compose-form'>
         <WarningContainer />
-
-        <ReplyIndicatorContainer />
+         <ReplyIndicatorContainer />
 
         <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef}>
           <AutosuggestInput
@@ -367,17 +366,17 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
         </div>
 
-        <Publisher
-          countText={countText}
-          disabled={!this.canSubmit()}
-          isEditing={isEditing}
-          onSecondarySubmit={handleSecondarySubmit}
-          onSubmit={handleSubmit}
-          privacy={privacy}
-          sideArm={sideArm}
-        />
-      </div>
-    );
-  }
+         <Publisher
+           countText={countText}
+           disabled={!this.canSubmit()}
+           isEditing={isEditing}
+           onSecondarySubmit={handleSecondarySubmit}
+           onSubmit={handleSubmit}
+           privacy={privacy}
+           sideArm={sideArm}
+         />
+       </div>
+     );
+   }
 
 }

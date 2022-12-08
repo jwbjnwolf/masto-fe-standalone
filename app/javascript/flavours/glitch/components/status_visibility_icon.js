@@ -10,6 +10,7 @@ const messages = defineMessages({
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+  local: { id: 'privacy.local.short', defaultMessage: 'Local users only' },
 });
 
 export default @injectIntl
@@ -29,6 +30,7 @@ class VisibilityIcon extends ImmutablePureComponent {
       unlisted: 'unlock',
       private: 'lock',
       direct: 'envelope',
+      local: 'lock',
     }[visibility];
 
     const label = intl.formatMessage(messages[visibility]);

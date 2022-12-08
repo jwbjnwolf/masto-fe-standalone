@@ -80,6 +80,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
       },
 
       onReceive (data) {
+        console.log("recv", timelineId, data) 
         switch(data.event) {
         case 'update':
           dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));

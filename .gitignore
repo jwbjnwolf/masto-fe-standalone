@@ -6,6 +6,7 @@
 
 # Ignore bundler config and downloaded libraries.
 /.bundle
+distribution
 /vendor/bundle
 
 # Ignore the default SQLite database.

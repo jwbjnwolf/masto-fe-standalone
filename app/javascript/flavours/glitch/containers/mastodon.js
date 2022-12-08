@@ -35,7 +35,7 @@ const createIdentityContext = state => ({
   accountId: state.meta.me,
   disabledAccountId: state.meta.disabled_account_id,
   accessToken: state.meta.access_token,
-  permissions: state.role ? state.role.permissions : 0,
+  permissions: [],
 });
 
 export default class Mastodon extends React.PureComponent {

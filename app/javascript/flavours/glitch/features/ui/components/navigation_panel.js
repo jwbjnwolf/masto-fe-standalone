@@ -63,8 +63,8 @@ class NavigationPanel extends React.Component {
 
         {(signedIn || timelinePreview) && (
           <>
-            <ColumnLink transparent to='/public/local' icon='users' text={intl.formatMessage(messages.local)} />
-            <ColumnLink transparent exact to='/public' icon='globe' text={intl.formatMessage(messages.federated)} />
+            <ColumnLink transparent to='/web/public/local' icon='users' text={intl.formatMessage(messages.local)} />
+            <ColumnLink transparent exact to='/web/public' icon='globe' text={intl.formatMessage(messages.federated)} />
           </>
         )}
 

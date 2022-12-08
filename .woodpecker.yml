@@ -1,0 +1,30 @@
+pipeline:
+  build:
+    when:
+      event:
+      - tag
+      - push
+    image: node:16
+    commands:
+    - yarn
+    - TARGET=distribution ./build.sh
+
+  release:
+    when:
+      event:
+      - tag
+      - push
+    image: node:16
+    secrets:
+    - SCW_ACCESS_KEY
+    - SCW_SECRET_KEY
+    - SCW_DEFAULT_ORGANIZATION_ID
+    commands:
+      - apt-get update && apt-get install -y rclone wget zip
+      - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.5.1/scaleway-cli_2.5.1_linux_amd64
+      - mv scaleway-cli_2.5.1_linux_amd64 scaleway-cli
+      - chmod +x scaleway-cli
+      - ./scaleway-cli object config install type=rclone
+      - export BUILD_TAG=$${CI_COMMIT_TAG:-"$CI_COMMIT_BRANCH"}
+      - zip mastofe.zip -r distribution
+      - rclone copyto mastofe.zip scaleway:akkoma-updates/frontend/$BUILD_TAG/masto-fe.zip

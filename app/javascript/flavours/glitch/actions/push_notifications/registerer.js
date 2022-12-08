@@ -18,7 +18,10 @@ const urlBase64ToUint8Array = (base64String) => {
   return outputArray;
 };
 
-const getApplicationServerKey = () => document.querySelector('[name="applicationServerKey"]').getAttribute('content');
+const getApplicationServerKey = () => {
+  const k = document.querySelector('[name="applicationServerKey"]');
+  return k === null ? '' : k.getAttribute('content');
+};
 
 const getRegistration = () => navigator.serviceWorker.ready;
 

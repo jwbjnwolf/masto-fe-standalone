@@ -323,7 +323,7 @@ class MediaGallery extends React.PureComponent {
 
   _setDimensions () {
     const width = this.node.offsetWidth;
- 
+
     if (width && width != this.state.width) {
       // offsetWidth triggers a layout, so only calculate when we need to
       if (this.props.cacheWidth) {
@@ -360,7 +360,7 @@ class MediaGallery extends React.PureComponent {
     } else if (width) {
       style.height = width / (16/9);
     } else {
-      return (<div className={computedClass} ref={this.handleRef}></div>);
+      return (<div className={computedClass} ref={this.handleRef} />);
     }
 
     if (this.isStandaloneEligible()) {
