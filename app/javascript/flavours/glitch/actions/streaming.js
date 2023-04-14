@@ -91,7 +91,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
       onReceive (data) {
         switch(data.event) {
         case 'update':
-          if (this.shouldUpdate(timelineId, data.stream)) {
+          if ((timelineId === 'home' && data.stream[0].startsWith('user')) || (timelineId === 'community' && data.stream[0].startsWith('public')) || (timelineId === data.stream[0])) {
             dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
           }
           break;
