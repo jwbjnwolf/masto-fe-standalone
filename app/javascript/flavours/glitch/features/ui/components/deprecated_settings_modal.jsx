@@ -65,7 +65,7 @@ class DeprecatedSettingsModal extends React.PureComponent {
             <ul>
               { settings.map((setting_name) => (
                 <li>
-                  <a href={preferenceLink(setting_name)}><FormattedMessage {...messages[setting_name]} /></a>
+                  <span><FormattedMessage {...messages[setting_name]} /></span>
                 </li>
               )) }
             </ul>

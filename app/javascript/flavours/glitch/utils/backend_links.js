@@ -1,4 +1,4 @@
-export const preferencesLink = '/settings/preferences';
+export const preferencesLink = undefined;
 export const profileLink = '/settings/profile';
 export const signOutLink = '/logout.html';
 export const privacyPolicyLink = '/privacy-policy';

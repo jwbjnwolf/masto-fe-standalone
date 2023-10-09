@@ -117,7 +117,7 @@ export default class ErrorBoundary extends React.PureComponent {
                 <FormattedMessage
                   id='web_app_crash.change_your_settings'
                   defaultMessage='Change your {settings}'
-                  values={{ settings: <a href={preferencesLink}><FormattedMessage id='web_app_crash.settings' defaultMessage='settings' /></a> }}
+                  values={{ settings: <span><FormattedMessage id='web_app_crash.settings' defaultMessage='settings' /></span> }}
                 />
               </li>
             )}

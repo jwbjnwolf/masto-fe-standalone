@@ -299,12 +299,12 @@ class LocalSettingsPage extends React.PureComponent {
                 defaultMessage="This setting is now controlled from Mastodon's {settings_page_link}"
                 values={{
                   settings_page_link: (
-                    <a href={preferenceLink('user_setting_expand_spoilers')}>
+                    <span>
                       <FormattedMessage
                         id='settings.shared_settings_link'
                         defaultMessage='user preferences'
                       />
-                    </a>
+                    </span>
                   ),
                 }}
               />
