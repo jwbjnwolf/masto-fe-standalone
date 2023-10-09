@@ -184,5 +184,5 @@ async function setStateAndRedirect(access_token, domain) {
 
 function setMessage(message) {
   document.getElementById('message').textContent = message;
-  document.getElementById('btn').enabled = false;
+  document.getElementById('btn').disabled = true;
 }
