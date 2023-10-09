@@ -57,8 +57,7 @@ module.exports = {
   entry: entries,
 
   output: {
-    filename: 'js/[name]-[chunkhash].js',
-    chunkFilename: 'js/[name]-[chunkhash].chunk.js',
+    filename: 'js/[name].js',
     hotUpdateChunkFilename: 'js/[id]-[hash].hot-update.js',
     hashFunction: 'sha256',
     crossOriginLoading: 'anonymous',
@@ -103,8 +102,7 @@ module.exports = {
       },
     ),
     new MiniCssExtractPlugin({
-      filename: 'css/[name]-[contenthash:8].css',
-      chunkFilename: 'css/[name]-[contenthash:8].chunk.css',
+      filename: 'css/[name].css',
     }),
     new AssetsManifestPlugin({
       integrity: true,
