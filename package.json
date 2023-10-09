@@ -5,8 +5,9 @@
     "node": ">=16"
   },
   "scripts": {
-    "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
-    "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/webpack",
+    "build:development": "cross-env NODE_ENV=development webpack --config config/webpack/development.js",
+    "build:production": "cross-env NODE_ENV=production webpack --config config/webpack/production.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack/production.js",
     "fix:js": "yarn lint:js --fix",
     "fix:json": "prettier --write \"**/*.{json,json5}\"",
     "fix:md": "prettier --write \"**/*.md\"",
