@@ -8,10 +8,6 @@ async function ready() {
 
   if (domain) document.getElementById('instance').value = domain;
 
-  if (domain && accessToken) {
-    // do something
-  }
-
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get('code');
 
