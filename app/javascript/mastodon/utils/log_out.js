@@ -24,8 +24,8 @@ export const logOut = () => {
   submitButton.setAttribute('type', 'submit');
   form.appendChild(submitButton);
 
-  form.method = 'post';
-  form.action = '/auth/sign_out';
+  form.method = 'get';
+  form.action = '/logout.html';
   form.style.display = 'none';
 
   document.body.appendChild(form);
