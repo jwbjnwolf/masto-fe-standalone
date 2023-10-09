@@ -1,5 +1,5 @@
 export const preferencesLink = undefined;
-export const profileLink = '/settings/profile';
+export const profileLink = undefined;
 export const signOutLink = '/logout.html';
 export const privacyPolicyLink = '/privacy-policy';
 export const accountAdminLink = (id) => `/admin/accounts/${id}`;

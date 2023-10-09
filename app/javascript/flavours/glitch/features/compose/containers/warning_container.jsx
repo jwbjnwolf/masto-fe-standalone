@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 
 const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning }) => {
   if (needsLockWarning) {
-    return <Warning message={<FormattedMessage id='compose_form.lock_disclaimer' defaultMessage='Your account is not {locked}. Anyone can follow you to view your follower-only posts.' values={{ locked: <a href={profileLink}><FormattedMessage id='compose_form.lock_disclaimer.lock' defaultMessage='locked' /></a> }} />} />;
+    return <Warning message={<FormattedMessage id='compose_form.lock_disclaimer' defaultMessage='Your account is not {locked}. Anyone can follow you to view your follower-only posts.' values={{ locked: <span><FormattedMessage id='compose_form.lock_disclaimer.lock' defaultMessage='locked' /></span> }} />} />;
   }
 
   if (hashtagWarning) {
