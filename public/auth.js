@@ -20,15 +20,14 @@ async function auth() {
   const instance = document.getElementById('instance').value;
   const domain = instance.match(/(?:https?:\/\/)?(.*)/)[1];
   if (!domain) {
-    document.getElementById('message').textContent = 'Invalid instance';
+    setMessage('Invalid instance', false);
     return;
   }
 
   localStorage.setItem('domain', domain);
 
-  if (!localStorage.getItem(`client_id_${domain}`) || !localStorage.getItem(`client_secret_${domain}`)) {
-    await registerApp(domain);
-  }
+  // We need to run this every time in cases like Iceshrimp, where the client id/secret aren't reusable (yet) because they contain use-once session information
+  await registerApp(domain);
 
   authorize(domain);
 }
@@ -182,7 +181,7 @@ async function setStateAndRedirect(access_token, domain) {
   window.location.href = '/';
 }
 
-function setMessage(message) {
+function setMessage(message, disabled = true) {
   document.getElementById('message').textContent = message;
-  document.getElementById('btn').disabled = true;
+  document.getElementById('btn').disabled = disabled;
 }
