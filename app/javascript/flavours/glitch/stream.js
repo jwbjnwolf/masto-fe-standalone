@@ -212,7 +212,9 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
   channelName = params.shift();
 
   if (streamingAPIBaseURL.startsWith('ws')) {
-    const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?stream=user&${params.join('&')}`, accessToken);
+    params.push(`access_token=${accessToken}`);
+
+    const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming?stream=user&${params.join('&')}`, accessToken);
 
     ws.onopen      = connected;
     ws.onmessage   = e => received(JSON.parse(e.data));
