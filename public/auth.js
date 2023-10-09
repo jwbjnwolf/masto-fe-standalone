@@ -43,7 +43,7 @@ async function registerApp(domain) {
   const appsUrl = `https://${domain}/api/v1/apps`;
   const formData = new FormData();
   formData.append('client_name', 'Masto-FE standalone');
-  formData.append('redirect_uris', document.location.href);
+  formData.append('redirect_uris', document.location.origin + document.location.pathname);
   formData.append('scopes', 'read write follow push');
 
   // eslint-disable-next-line promise/catch-or-return
@@ -64,7 +64,7 @@ async function registerApp(domain) {
 function authorize(domain) {
   setMessage('Authorizing');
   const clientId = localStorage.getItem(`client_id_${domain}`);
-  document.location.href = `https://${domain}/oauth/authorize?response_type=code&client_id=${clientId}&redirect_uri=${document.location.href}&scope=read+write+follow+push`;
+  document.location.href = `https://${domain}/oauth/authorize?response_type=code&client_id=${clientId}&redirect_uri=${document.location.origin + document.location.pathname}&scope=read+write+follow+push`;
 }
 
 async function getToken(code, domain) {
@@ -80,7 +80,7 @@ async function getToken(code, domain) {
   formData.append('client_id', clientId);
   formData.append('client_secret', clientSecret);
   formData.append('scope', 'read write follow push');
-  formData.append('redirect_uri', document.location.href);
+  formData.append('redirect_uri', document.location.origin + document.location.pathname);
 
 
   // eslint-disable-next-line promise/catch-or-return
