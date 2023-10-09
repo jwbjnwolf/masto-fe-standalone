@@ -156,7 +156,7 @@ async function setStateAndRedirect(access_token, domain) {
       "domain": domain,
       "enable_reaction": true,
       "locale": "en",
-      "mascot": "/images/pleroma-fox-tan-smol.png",
+      "mascot": "/images/mascot.svg",
       "max_toot_chars": instance.configuration.statuses.max_characters,
       "me": credentials.id,
       "reduce_motion": false,
