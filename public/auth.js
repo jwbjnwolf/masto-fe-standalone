@@ -160,7 +160,9 @@ async function setStateAndRedirect(access_token, domain) {
       "base_url": `https://${domain}`,
       "streaming_api_base_url": `wss://${domain}`,
       "title": `${instance.title}`,
-      "unfollow_modal": true
+      "unfollow_modal": true,
+      "source_url": 'https://iceshrimp.dev/iceshrimp/masto-fe-standalone',
+      "version": instance.version
     },
     "poll_limits": {
       "max_expiration": instance.configuration.polls.max_expiration,
