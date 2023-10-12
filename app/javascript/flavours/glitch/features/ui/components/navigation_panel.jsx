@@ -104,7 +104,6 @@ class NavigationPanel extends Component {
 
             <hr />
 
-            {!!preferencesLink && <ColumnLink transparent href={preferencesLink} icon='cog' text={intl.formatMessage(messages.preferences)} />}
             <ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
           </>
         )}

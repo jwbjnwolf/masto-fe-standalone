@@ -1,14 +1,31 @@
-# Mastodon Glitch Edition
+# Mastodon Glitch Edition (standalone frontend)
 
-> Now with automated deploys!
+This is a very hacky fork of akkoma-masto-fe that adds standalone support (meaning your browser can OAuth against an arbitrary instance). It's currently tested to "work" (login doesn't break, basic functionality works) with Iceshrimp and GoToSocial (and it obviously works with Mastodon).
 
-[![Build Status](https://img.shields.io/circleci/project/github/glitch-soc/mastodon.svg)][circleci]
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/glitch-soc/mastodon.svg)][code_climate]
+To try this out, go to [masto-fe.iceshrimp.dev](https://masto-fe.iceshrimp.dev), type in your instance domain name (for split domain setups, use the web domain) & press the button.
 
-[circleci]: https://circleci.com/gh/glitch-soc/mastodon
-[code_climate]: https://codeclimate.com/github/glitch-soc/mastodon
+To set this up yourself, clone the repo into e.g. `/home/user/masto-fe-standalone` and run `yarn && yarn build:production` (you might have to use `NODE_OPTIONS=--openssl-legacy-provider` until we've rebased this onto upstream glitch).
 
-So here's the deal: we all work on this code, and anyone who uses that does so absolutely at their own risk. can you dig it?
+Then configure nginx for a subdomain like this:
 
-- You can view documentation for this project at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/).
-- And contributing guidelines are available [here](CONTRIBUTING.md) and [here](https://glitch-soc.github.io/docs/contributing/).
+```
+map $http_upgrade $connection_upgrade {
+        default upgrade;
+        ''      close;
+}
+
+server {
+        include sites/example.com/inc/ssl.conf;
+        server_name masto.example.com;
+
+        location / {
+                root /home/user/masto-fe-standalone/public/;
+                index index.html;
+                try_files $uri /index.html;
+        }
+}
+```
+
+And open `https://masto.example.com` in your browser, type in your instance domain, press the button & follow the OAuth flow.
+
+Should anything break, open `https://masto.example.com/logout.html` or clear local storage manually.

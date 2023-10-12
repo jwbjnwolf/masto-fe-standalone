@@ -26,7 +26,7 @@ export const logOut = () => {
   submitButton.setAttribute('type', 'submit');
   form.appendChild(submitButton);
 
-  form.method = 'post';
+  form.method = 'get';
   form.action = signOutLink;
   form.style.display = 'none';
 

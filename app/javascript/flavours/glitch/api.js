@@ -53,6 +53,15 @@ const authorizationHeaderFromState = getState => {
 
 /**
  * @param {() => import('immutable').Map<string,any>} getState
+ * @returns string
+ */
+const baseUrlFromState = getState => {
+  const baseUrl = getState && getState().getIn(['meta', 'base_url'], '');
+  return `${baseUrl}`;
+};
+
+/**
+ * @param {() => import('immutable').Map} getState
  * @returns {import('axios').AxiosInstance}
  */
 export default function api(getState) {
@@ -61,6 +70,8 @@ export default function api(getState) {
       ...csrfHeader,
       ...authorizationHeaderFromState(getState),
     },
+
+    baseURL: baseUrlFromState(getState),
 
     transformResponse: [
       function (data) {

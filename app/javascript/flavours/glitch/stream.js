@@ -235,8 +235,9 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
   channelName = params.shift();
 
   if (streamingAPIBaseURL.startsWith('ws')) {
+    params.push(`access_token=${accessToken}`);
     // @ts-expect-error
-    const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
+    const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming?${params.join('&')}`, accessToken);
 
     // @ts-expect-error
     ws.onopen      = connected;
