@@ -174,7 +174,7 @@ class SwitchingColumnsArea extends PureComponent {
       if (singleColumn) {
         redirect = <Redirect from='/' to='/home' exact />;
       } else {
-        redirect = <Redirect from='/' to='/deck/getting-started' exact />;
+        redirect = <Redirect from='/' to='/getting-started' exact />;
       }
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
       redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
@@ -189,9 +189,8 @@ class SwitchingColumnsArea extends PureComponent {
         <WrappedSwitch>
           {redirect}
 
-          {singleColumn ? <Redirect from='/deck' to='/home' exact /> : null}
-          {singleColumn && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={pathName.slice(5)} /> : null}
-          {!singleColumn && pathName === '/getting-started' ? <Redirect from='/getting-started' to='/deck/getting-started' exact /> : null}
+          {singleColumn ? <Redirect from='/getting-started' to='/home' exact /> : null}
+          {pathName.startsWith('/deck/') ? <Redirect from={pathName} to={pathName.slice(5)} /> : null}
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
