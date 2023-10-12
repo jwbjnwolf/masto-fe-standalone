@@ -71,7 +71,6 @@ async function loadState() {
       "enable_reaction": true,
       "locale": "en",
       "mascot": "/images/mascot.svg",
-      "max_toot_chars": instance.configuration.statuses.max_characters,
       "me": credentials.id,
       "reduce_motion": false,
       "show_quote_button": true,
@@ -82,6 +81,7 @@ async function loadState() {
       "source_url": 'https://iceshrimp.dev/iceshrimp/masto-fe-standalone',
       "version": instance.version
     },
+    "max_toot_chars": instance.configuration.statuses.max_characters,
     "poll_limits": {
       "max_expiration": instance.configuration.polls.max_expiration,
       "max_option_chars": instance.configuration.polls.max_characters_per_option,
