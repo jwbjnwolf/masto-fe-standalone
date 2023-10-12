@@ -1,10 +1,10 @@
 # Mastodon Glitch Edition (standalone frontend)
 
-This is a very hacky fork of akkoma-masto-fe that adds standalone support (meaning your browser can OAuth against an arbitrary instance). It's currently tested to "work" (login doesn't break, basic functionality works) with Iceshrimp and GoToSocial (and it obviously works with Mastodon).
+This is a somewhat hacky fork of glitch-soc that adds standalone support (meaning your browser can OAuth against an arbitrary instance). It's currently tested to work (for the most part) with Iceshrimp and GoToSocial (and obviously Mastodon).
 
 To try this out, go to [masto-fe.iceshrimp.dev](https://masto-fe.iceshrimp.dev), type in your instance domain name (for split domain setups, use the web domain) & press the button.
 
-To set this up yourself, clone the repo into e.g. `/home/user/masto-fe-standalone` and run `yarn && yarn build:production` (you might have to use `NODE_OPTIONS=--openssl-legacy-provider` until we've rebased this onto upstream glitch).
+To set this up yourself, clone the repo into e.g. `/home/user/masto-fe-standalone` and run `yarn && yarn build:production`.
 
 Then configure nginx for a subdomain like this:
 
