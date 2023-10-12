@@ -93,7 +93,9 @@ async function loadState() {
       "admin": false,
       "delete_others_notice": false
     },
-    "settings": {}
+    "settings": {
+
+    }
   };
 
   const json = JSON.stringify(state);
