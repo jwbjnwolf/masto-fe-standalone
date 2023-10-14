@@ -63,7 +63,7 @@ export const ImmutableHashtag = ({ hashtag }) => (
     to={`/tags/${hashtag.get('name')}`}
     people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
     // @ts-expect-error
-    history={hashtag.get('history').reverse().map((day) => day.get('uses')).toArray()}
+    history={hashtag.get('history')?.reverse().map((day) => day.get('uses')).toArray()}
   />
 );
 
@@ -82,7 +82,7 @@ const Hashtag = ({ name, href, to, people, uses, history, className, description
       {description ? (
         <span>{description}</span>
       ) : (
-        typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />
+        !isNaN(people) && (typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />)
       )}
     </div>
 
@@ -92,7 +92,7 @@ const Hashtag = ({ name, href, to, people, uses, history, className, description
       </div>
     )}
 
-    {withGraph && (
+    {withGraph && typeof history !== 'undefined' && (
       <div className='trends__item__sparkline'>
         <SilentErrorBoundary>
           <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)}>
