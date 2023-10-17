@@ -10,6 +10,7 @@ import Permalink from 'flavours/glitch/components/permalink';
 import { profileLink } from 'flavours/glitch/utils/backend_links';
 
 import ActionBar from './action_bar';
+import initialState from 'mastodon/initial_state';
 
 export default class NavigationBar extends ImmutablePureComponent {
 
@@ -30,6 +31,7 @@ export default class NavigationBar extends ImmutablePureComponent {
           <div>{this.props.account.get('display_name')}</div>
           <Permalink className='acct' href={this.props.account.get('url')} to={`/@${this.props.account.get('acct')}`}>
             <strong>@{this.props.account.get('acct')}</strong>
+            <span>@{initialState.meta.domain}</span>
           </Permalink>
         </div>
 
