@@ -1,0 +1,6 @@
+#!/bin/bash
+
+##### Toots compile
+export NODE_OPTIONS=--openssl-legacy-provider
+yarn && yarn build:production
+#####
