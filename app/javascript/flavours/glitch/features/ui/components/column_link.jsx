@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import { Icon } from 'flavours/glitch/components/icon';
 
-const ColumnLink = ({ icon, text, to, onClick, href, method, badge, transparent, ...other }) => {
+const ColumnLink = ({ icon, text, to, onClick, href, logOut, method, badge, transparent, ...other }) => {
   const className = classNames('column-link', { 'column-link--transparent': transparent });
   const badgeElement = typeof badge !== 'undefined' ? <span className='column-link__badge'>{badge}</span> : null;
   const iconElement = typeof icon === 'string' ? <Icon id={icon} fixedWidth className='column-link__icon' /> : icon;
@@ -25,6 +25,19 @@ const ColumnLink = ({ icon, text, to, onClick, href, method, badge, transparent,
         <span>{text}</span>
         {badgeElement}
       </NavLink>
+    );
+  } else if (logOut) {
+    const handleOnClick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return onClick(e);
+    };
+    return (
+      <a href={logOut} onClick={onClick && handleOnClick} className={className} title={text} {...other}>
+        {iconElement}
+        <span>{text}</span>
+        {badgeElement}
+      </a>
     );
   } else {
     const handleOnClick = (e) => {
@@ -49,6 +62,7 @@ ColumnLink.propTypes = {
   to: PropTypes.string,
   onClick: PropTypes.func,
   href: PropTypes.string,
+  logOut: PropTypes.string,
   method: PropTypes.string,
   badge: PropTypes.node,
   transparent: PropTypes.bool,

@@ -27,7 +27,7 @@ import BundleColumnError from './bundle_column_error';
 import ColumnLoading from './column_loading';
 import ComposePanel from './compose_panel';
 import DrawerLoading from './drawer_loading';
-import NavigationPanel from './navigation_panel';
+import NavigationPanel from '../containers/navigation_container';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -93,7 +93,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (!this.props.singleColumn) {
       this.node.removeEventListener('wheel', this.handleWheel);
     }
@@ -138,7 +138,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     return <BundleColumnError multiColumn errorType='network' {...props} />;
   };
 
-  render () {
+  render() {
     const { columns, children, singleColumn, openSettings } = this.props;
     const { renderComposePanel } = this.state;
 
@@ -169,7 +169,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
       <div className='columns-area' ref={this.setRef}>
         {columns.map(column => {
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
-          const other  = params && params.other ? params.other : {};
+          const other = params && params.other ? params.other : {};
 
           return (
             <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading(column.get('id'))} error={this.renderError}>

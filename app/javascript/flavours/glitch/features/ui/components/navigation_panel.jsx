@@ -8,6 +8,9 @@ import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';
 import { transientSingleColumn } from 'flavours/glitch/is_mobile';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 
+import { Icon } from 'flavours/glitch/components/icon';
+import { signOutLink } from 'flavours/glitch/utils/backend_links';
+
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
@@ -31,6 +34,7 @@ const messages = defineMessages({
   advancedInterface: { id: 'navigation_bar.advanced_interface', defaultMessage: 'Open in advanced web interface' },
   openedInClassicInterface: { id: 'navigation_bar.opened_in_classic_interface', defaultMessage: 'Posts, accounts, and other specific pages are opened by default in the classic web interface.' },
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
+  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
 });
 
 class NavigationPanel extends Component {
@@ -43,6 +47,16 @@ class NavigationPanel extends Component {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     onOpenSettings: PropTypes.func,
+    onLogout: PropTypes.func.isRequired,
+  };
+
+  handleLogoutClick = e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.props.onLogout();
+
+    return false;
   };
 
   isFirehoseActive = (match, location) => {
@@ -89,7 +103,7 @@ class NavigationPanel extends Component {
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
             <hr />
-            { disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner /> }
+            {disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner />}
           </div>
         )}
 
@@ -112,6 +126,14 @@ class NavigationPanel extends Component {
           <hr />
           <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
         </div>
+
+        {signedIn && (
+          <>
+            <hr />
+
+            <ColumnLink transparent logOut={signOutLink} onClick={this.handleLogoutClick} icon='sign-out' text={intl.formatMessage(messages.logout)} />
+          </>
+        )}
 
         <NavigationPortal />
       </div>
