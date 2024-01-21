@@ -119,16 +119,7 @@ class NavigationPanel extends Component {
             <hr />
 
             <ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
-          </>
-        )}
 
-        <div className='navigation-panel__legal'>
-          <hr />
-          <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
-        </div>
-
-        {signedIn && (
-          <>
             <hr />
 
             <ColumnLink transparent logOut={signOutLink} onClick={this.handleLogoutClick} icon='sign-out' text={intl.formatMessage(messages.logout)} />
